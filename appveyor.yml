@@ -14,3 +14,6 @@ build_script:
   - C:\python27\Scripts\ambuild
 on_success:
   - C:\python27\python.exe ..\upload.py
+artifacts:
+  - path: addons/sourcemod/extensions/conplex.ext.dll
+  - path: addons/sourcemod/extensions/webcon.ext.dll
