@@ -212,11 +212,14 @@ IConplex::ProtocolDetectionState ProtocolHandler::ExecuteDetector(const unsigned
 
 bool ProtocolHandler::ExecuteHandler(int socket, const sockaddr *address, unsigned int addressLength) const
 {
+	DEBUG_LOG("215 EXCUTE HANDLER");
 	if (this->type == Extension && handler.extension) {
+		DEBUG_LOG("217 this->type == Extension && handler.extension");
 		return handler.extension(id, socket, address, addressLength);
 	}
 
 	if (this->type == Plugin && handler.plugin) {
+		DEBUG_LOG("222 this->type == Plugin && handler.plugin");
 		handler.plugin->PushString(id);
 		handler.plugin->PushCell(handlesys->CreateHandle(handleTypeSocket, new ConplexSocket(socket), owner, myself->GetIdentity(), NULL));
 		handler.plugin->PushString(inet_ntoa(((sockaddr_in *)address)->sin_addr));
@@ -414,13 +417,16 @@ DETOUR_DECL_MEMBER0(ProcessAccept, void)
 				DEBUG_LOG(">>> %s = %d %d", i->GetId(), ret, state);
 
 				if (state == IConplex::Match) {
+					DEBUG_LOG("417 state == IConplex::Match");
 					handler = &(*i);
 					pendingCount = 0;
 					break;
 				}
 
 				if (state == IConplex::NeedMoreData) {
+					DEBUG_LOG("424 state == IConplex::NeedMoreData");
 					if (!handler) {
+						DEBUG_LOG("!handler");
 						handler = &(*i);
 					}
 
@@ -431,10 +437,12 @@ DETOUR_DECL_MEMBER0(ProcessAccept, void)
 		}
 
 		if (pendingCount > 1) {
+			DEBUG_LOG("437 pendingCount > 1");
 			handler = NULL;
 		}
 
 		if (!handler) {
+			DEBUG_LOG("442 !handler");
 			// Ran out of handlers or data.
 			if ((ret > 0 && pendingCount == 0) || ret == sizeof(buffer)) {
 				if (rconServer) {
