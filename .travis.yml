@@ -17,7 +17,7 @@ before_script:
 script:
   - mkdir build
   - cd build
-  - python ../configure.py --enable-optimize
+  - python ../configure.py --enable-optimize --enable-debug
   - ~/.local/bin/ambuild
 after_success:
   - python ../upload.py
