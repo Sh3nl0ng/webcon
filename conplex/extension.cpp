@@ -372,7 +372,7 @@ DETOUR_DECL_MEMBER0(ProcessAccept, void)
 	// Check for incoming sockets first.
 	socketCreator->ProcessAccept();
 
-	unsigned char buffer[256] = {};
+	unsigned char buffer[1024] = {};
 
 	int count = pendingSockets.Count();
 	for (int i = (count - 1); i >= 0; --i) {
