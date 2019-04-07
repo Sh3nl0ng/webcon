@@ -409,7 +409,7 @@ DETOUR_DECL_MEMBER0(ProcessAccept, void)
 				}
 
 				IConplex::ProtocolDetectionState state = i->ExecuteDetector(buffer, ret);
-				//DEBUG_LOG(">>> %s = %d %d", i->GetId(), ret, state);
+				DEBUG_LOG(">>> %s = %d %d", i->GetId(), ret, state);
 
 				if (state == IConplex::Match) {
 					handler = &(*i);
