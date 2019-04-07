@@ -401,8 +401,8 @@ DETOUR_DECL_MEMBER0(ProcessAccept, void)
 
 		if (ret > 0)
 		{
-			DEBUG_LOG("Buffer: %s", buffer);
-			DEBUG_LOG("Ret: %s", buffer);
+			DEBUG_LOG("Buffer: %d", buffer);
+			DEBUG_LOG("Ret: %d", ret);
 			// TODO: Don't call handlers that have returned NoMatch already on a previous call for this connection.
 			for (NameHashSet<ProtocolHandler>::iterator i = protocolHandlers.iter(); !i.empty(); i.next()) {
 				if (!i->IsAlive()) {
