@@ -442,10 +442,11 @@ DETOUR_DECL_MEMBER0(ProcessAccept, void)
 		}
 
 		if (!handler) {
-			DEBUG_LOG("442 !handler");
 			// Ran out of handlers or data.
 			if ((ret > 0 && pendingCount == 0) || ret == sizeof(buffer)) {
+				DEBUG_LOG("447 (ret > 0 && pendingCount == 0) || ret == sizeof(buffer)");
 				if (rconServer) {
+					DEBUG_LOG("448 rconServer");
 					netadr_t address;
 					address.SetFromSockadr(&(pendingSocket->socketAddress));
 					rconServer->HandleFailedRconAuth(address);
