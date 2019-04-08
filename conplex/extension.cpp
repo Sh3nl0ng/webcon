@@ -215,7 +215,10 @@ bool ProtocolHandler::ExecuteHandler(int socket, const sockaddr *address, unsign
 	DEBUG_LOG("215 EXCUTE HANDLER");
 	if (this->type == Extension && handler.extension) {
 		DEBUG_LOG("217 this->type == Extension && handler.extension");
-		DEBUG_LOG("%d, %d, %s, %d", id, socket, address, addressLength);
+		DEBUG_LOG("%s, %s, %s, %s", id, socket, address, addressLength);
+		DEBUG_LOG("%d, %d, %d, %d", id, socket, address, addressLength);
+		DEBUG_LOG("%f, %f, %f, %f", id, socket, address, addressLength);
+		DEBUG_LOG("%x, %x, %x, %x", id, socket, address, addressLength);
 		return handler.extension(id, socket, address, addressLength);
 	}
 
